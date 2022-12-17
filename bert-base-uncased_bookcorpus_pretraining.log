@@ -1,0 +1,765 @@
+12/15/2022 18:06:06 - WARNING - __main__ - Process rank: -1, device: cpu, n_gpu: 0distributed training: False, 16-bits training: False
+12/15/2022 18:06:06 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=0,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm/runs/Dec15_18-06-06_thetagpu06,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=/tmp/test-mlm,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/15/2022 18:06:08 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/15/2022 18:06:08 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:06:08 - INFO - datasets.builder - Generating dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+Downloading and preparing dataset bookcorpus/plain_text to /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f...
+12/15/2022 18:06:08 - INFO - datasets.builder - Dataset not on Hf google storage. Downloading and preparing it from source
+12/15/2022 18:06:08 - INFO - datasets.download.download_manager - Downloading took 0.0 min
+12/15/2022 18:06:09 - INFO - datasets.download.download_manager - Checksum Computation took 0.0 min
+12/15/2022 18:06:09 - INFO - datasets.utils.info_utils - Unable to verify checksums.
+12/15/2022 18:06:09 - INFO - datasets.builder - Generating train split
+12/15/2022 18:23:56 - INFO - datasets.utils.info_utils - All the splits matched successfully.
+Dataset bookcorpus downloaded and prepared to /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f. Subsequent calls will reuse this data.
+12/15/2022 18:23:58 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/15/2022 18:23:58 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:23:58 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/15/2022 18:23:58 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:23:58 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/15/2022 18:23:58 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:24:00 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/15/2022 18:24:00 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:24:00 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/15/2022 18:24:00 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:24:00 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/15/2022 18:24:00 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 18:24:18 - WARNING - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7efdc243f910> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+12/15/2022 18:24:18 - INFO - datasets.arrow_dataset - Caching processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-1c80317fa3b1799d.arrow
+12/16/2022 00:48:41 - WARNING - __main__ - Process rank: -1, device: cpu, n_gpu: 0distributed training: False, 16-bits training: False
+12/16/2022 00:48:41 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=0,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm/runs/Dec16_00-48-41_thetalogin6,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=/tmp/test-mlm,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/16/2022 00:48:44 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/16/2022 00:48:44 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:48:44 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/16/2022 00:48:44 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:48:48 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/16/2022 00:48:48 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:41 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/16/2022 00:49:41 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:41 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/16/2022 00:49:41 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:41 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/16/2022 00:49:41 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:43 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/16/2022 00:49:43 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:43 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/16/2022 00:49:43 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:43 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/16/2022 00:49:43 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/16/2022 00:49:46 - WARNING - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7f8290c7b130> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+12/16/2022 00:49:46 - INFO - datasets.arrow_dataset - Caching processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-1c80317fa3b1799d.arrow
+12/16/2022 01:26:26 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7f8290331ea0> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/16/2022 01:26:26 - INFO - datasets.arrow_dataset - Caching processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-bdd640fb06671ad1.arrow
+12/16/2022 01:28:23 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.group_texts at 0x7f8290331f30> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/16/2022 01:28:24 - INFO - datasets.arrow_dataset - Caching processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-3eb13b9046685257.arrow
+12/15/2022 19:45:03 - WARNING - __main__ - Process rank: -1, device: cpu, n_gpu: 0distributed training: False, 16-bits training: False
+12/15/2022 19:45:03 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=0,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm/runs/Dec15_19-45-03_thetagpu06,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=/tmp/test-mlm,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/15/2022 19:45:05 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/15/2022 19:45:05 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:45:05 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/15/2022 19:45:05 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:45:06 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/15/2022 19:45:06 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:00 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/15/2022 19:46:00 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:00 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/15/2022 19:46:00 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:01 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/15/2022 19:46:01 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:02 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/15/2022 19:46:02 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:02 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/15/2022 19:46:02 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:02 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/15/2022 19:46:02 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/15/2022 19:46:05 - WARNING - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7f0bb4936ef0> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+12/15/2022 19:46:05 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-1c80317fa3b1799d.arrow
+12/15/2022 19:48:20 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7f0bb4936b90> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/15/2022 19:48:20 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-bdd640fb06671ad1.arrow
+12/15/2022 19:48:26 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.group_texts at 0x7f0bb49379a0> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/15/2022 19:48:26 - INFO - datasets.arrow_dataset - Caching processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-3eb13b9046685257.arrow
+12/16/2022 02:07:54 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.group_texts at 0x7f8290331fc0> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/16/2022 02:07:54 - INFO - datasets.arrow_dataset - Caching processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-23b8c1e9392456de.arrow
+12/15/2022 20:27:18 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.group_texts at 0x7f0bb4936ef0> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/15/2022 20:27:18 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-23b8c1e9392456de.arrow
+12/17/2022 10:20:39 - WARNING - __main__ - Process rank: -1, device: cpu, n_gpu: 0distributed training: False, 16-bits training: False
+12/17/2022 10:20:39 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=0,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm/runs/Dec17_10-20-39_thetagpu12,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=/tmp/test-mlm,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/17/2022 10:20:40 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:20:40 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:20:40 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:20:40 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:20:40 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:20:40 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:21:35 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:21:35 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:21:35 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:21:35 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:21:35 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:21:35 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:21:36 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:21:36 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:21:36 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:21:36 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:21:36 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:21:36 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:54 - WARNING - __main__ - Process rank: -1, device: cpu, n_gpu: 0distributed training: False, 16-bits training: False
+12/17/2022 10:25:54 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=0,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm/runs/Dec17_10-25-54_thetagpu12,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=/tmp/test-mlm,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/17/2022 10:25:55 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:25:55 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:55 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:25:55 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:55 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:25:55 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:55 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:25:55 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:55 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:25:55 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:55 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:25:55 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:56 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:25:56 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:56 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:25:56 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:56 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:25:56 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:25:56 - WARNING - __main__ - You are instantiating a new config instance from scratch.
+12/17/2022 10:29:09 - WARNING - __main__ - Process rank: -1, device: cpu, n_gpu: 0distributed training: False, 16-bits training: False
+12/17/2022 10:29:09 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=0,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=passive,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm/runs/Dec17_10-29-09_thetagpu12,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+optim_args=None,
+output_dir=/tmp/test-mlm,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+12/17/2022 10:29:09 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:29:09 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:09 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:29:09 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:09 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:29:09 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:10 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:29:10 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:10 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:29:10 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:10 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:29:10 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:11 - INFO - datasets.builder - No config specified, defaulting to the single config: bookcorpus/plain_text
+12/17/2022 10:29:11 - INFO - datasets.info - Loading Dataset Infos from /home/mansisak/.cache/huggingface/modules/datasets_modules/datasets/bookcorpus/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:11 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+12/17/2022 10:29:11 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:11 - WARNING - datasets.builder - Found cached dataset bookcorpus (/grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f)
+12/17/2022 10:29:11 - INFO - datasets.info - Loading Dataset info from /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f
+12/17/2022 10:29:11 - INFO - __main__ - Training new model from scratch
+12/17/2022 10:29:13 - WARNING - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7f7922436a70> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+12/17/2022 10:29:13 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-1c80317fa3b1799d.arrow
+12/17/2022 10:31:29 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.tokenize_function at 0x7f7922436950> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/17/2022 10:31:29 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-bdd640fb06671ad1.arrow
+12/17/2022 10:31:37 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.group_texts at 0x7f7922436cb0> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/17/2022 10:31:37 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-3eb13b9046685257.arrow
+12/17/2022 10:33:38 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.group_texts at 0x7f7922436a70> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+12/17/2022 10:33:38 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /grand/SuperBERT/mansisak/hf_cache/bookcorpus/plain_text/1.0.0/eddee3cae1cc263a431aa98207d4d27fd8a73b0a9742f692af0e6c65afa4d75f/cache-23b8c1e9392456de.arrow
