@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "import_evaluate.py", line 1, in <module>
+    import evaluate
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/evaluate/__init__.py", line 29, in <module>
+    from .evaluation_suite import EvaluationSuite
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/evaluate/evaluation_suite/__init__.py", line 10, in <module>
+    from ..evaluator import evaluator
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/evaluate/evaluator/__init__.py", line 17, in <module>
+    from transformers.pipelines import SUPPORTED_TASKS as SUPPORTED_PIPELINE_TASKS
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/transformers/pipelines/__init__.py", line 34, in <module>
+    from .audio_classification import AudioClassificationPipeline
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/transformers/pipelines/audio_classification.py", line 20, in <module>
+    from .base import PIPELINE_INIT_ARGS, Pipeline
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/transformers/pipelines/base.py", line 33, in <module>
+    from ..modelcard import ModelCard
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/transformers/modelcard.py", line 44, in <module>
+    from .training_args import ParallelMode
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/transformers/training_args.py", line 25, in <module>
+    from .debug_utils import DebugOption
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/transformers/debug_utils.py", line 21, in <module>
+    import torch
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/torch/__init__.py", line 201, in <module>
+    _load_global_deps()
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/site-packages/torch/__init__.py", line 154, in _load_global_deps
+    ctypes.CDLL(lib_path, mode=ctypes.RTLD_GLOBAL)
+  File "/lus/theta-fs0/software/thetagpu/conda/2022-07-01/mconda3/lib/python3.8/ctypes/__init__.py", line 373, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libcurand.so.10: cannot open shared object file: No such file or directory
