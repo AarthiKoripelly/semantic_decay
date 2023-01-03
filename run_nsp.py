@@ -8,15 +8,12 @@ config = BertConfig.from_pretrained("bert-base-uncased")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 #This will instantiatiate a pre-trained model for NSP
-model_path = '/grand/projects/SuperBERT/mansisak/semantic_decay_models/bookcorpus_pretraining/'
 def get_model(model_path):
     model = BertForNextSentencePrediction.from_pretrained('/grand/projects/SuperBERT/mansisak/semantic_decay_models/bookcorpus_pretraining/')
     return model
 
-model = get_model(model_path)
 
 
-data_path = "/grand/projects/SuperBERT/mansisak/bert-abstracts/2008/Biology/20220701_070950_00030_vrytk_d58b1dad-8368-42de-b191-b9a2da885938.txt"
 def get_data(data_path):
     with open(data_path, "r") as fp:
       abstracts = fp.read().split('\n\n')
@@ -25,10 +22,7 @@ def get_data(data_path):
     bag_size = len(bag)
     return bag, bag_size, abstracts
 
-bag, bag_size, abstracts = get_data(data_path)
-
-
-def process_abstracts(abstracts):
+def process_abstracts(abstracts, bag, bag_size):
     sentence_a = []
     sentence_b = []
     label = []
@@ -58,14 +52,12 @@ def process_abstracts(abstracts):
     print("Finished Processing All Abstracts")
     return sentence_a, sentence_b, label
 
-sentence_a, sentence_b, label = process_abstracts(abstracts)
 
 def get_inputs(sentence_a, sentence_b, label):
     inputs = tokenizer(sentence_a, sentence_b, return_tensors='pt', max_length=512, truncation=True, padding='max_length')
     inputs['labels'] = torch.LongTensor([label]).T
     return inputs
 
-inputs = get_inputs(sentence_a, sentence_b, label)
 
 class AbstractsDataset(torch.utils.data.Dataset):
     def __init__(self, encodings):
@@ -75,15 +67,10 @@ class AbstractsDataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.encodings.input_ids)
 
-dataset = AbstractsDataset(inputs)
-loader = torch.utils.data.DataLoader(dataset, batch_size=2, shuffle=True)
-
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-# and move our model over to the selected device
-model.to(device)
-
-epochs = 1
 def train_model(epochs, model, loader):
+    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+    # and move our model over to the selected device
+    model.to(device)
     # activate training mode
     model.train()
     # initialize optimizer
@@ -111,11 +98,16 @@ def train_model(epochs, model, loader):
             # print relevant info to progress bar
             loop.set_description(f'Epoch {epoch}')
             loop.set_postfix(loss=loss.item())
-    #TODO (MS): save checkpointed model
+    #TODO (MS): save checkpointed model by subject and year!!
+    #same dir structure as bert abstracts 
     return model
 
 
 def eval_model(model, loader):
+    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+    # and move our model over to the selected device
+    model.to(device)
+    # activate evaluation mode
     model.eval()
 
     total_pairs = 0
@@ -145,7 +137,18 @@ def eval_model(model, loader):
     accuracy = correct_classifications / total_pairs
     print("accuracy: ", accuracy)
 
+model_path = '/grand/projects/SuperBERT/mansisak/semantic_decay_models/bookcorpus_pretraining/'
+model = get_model(model_path)
 
-eval_model(model, loader)
+data_path = "/grand/projects/SuperBERT/mansisak/bert-abstracts/2008/Biology/20220701_070950_00030_vrytk_d58b1dad-8368-42de-b191-b9a2da885938.txt"
+bag, bag_size, abstracts = get_data(data_path)
+sentence_a, sentence_b, label = process_abstracts(abstracts, bag, bag_size)
+inputs = get_inputs(sentence_a, sentence_b, label)
+dataset = AbstractsDataset(inputs)
+loader = torch.utils.data.DataLoader(dataset, batch_size=2, shuffle=True)
+
+
+epochs = 1
 model = train_model(epochs, model, loader) 
+
 eval_model(model, loader)
