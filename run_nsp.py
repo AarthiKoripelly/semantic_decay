@@ -3,6 +3,7 @@ import random
 from transformers import BertTokenizer, BertForNextSentencePrediction
 import torch
 from tqdm import tqdm  # for our progress bar
+import os
 
 config = BertConfig.from_pretrained("bert-base-uncased")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
@@ -98,8 +99,6 @@ def train_model(epochs, model, loader):
             # print relevant info to progress bar
             loop.set_description(f'Epoch {epoch}')
             loop.set_postfix(loss=loss.item())
-    #TODO (MS): save checkpointed model by subject and year!!
-    #same dir structure as bert abstracts 
     return model
 
 
@@ -140,15 +139,29 @@ def eval_model(model, loader):
 model_path = '/grand/projects/SuperBERT/mansisak/semantic_decay_models/bookcorpus_pretraining/'
 model = get_model(model_path)
 
-data_path = "/grand/projects/SuperBERT/mansisak/bert-abstracts/2008/Biology/20220701_070950_00030_vrytk_d58b1dad-8368-42de-b191-b9a2da885938.txt"
-bag, bag_size, abstracts = get_data(data_path)
-sentence_a, sentence_b, label = process_abstracts(abstracts, bag, bag_size)
-inputs = get_inputs(sentence_a, sentence_b, label)
-dataset = AbstractsDataset(inputs)
-loader = torch.utils.data.DataLoader(dataset, batch_size=2, shuffle=True)
+
+base_data_path = "/grand/projects/SuperBERT/mansisak/bert-abstracts/"
+year = str(1931)
+subject = "Biology"
+data_dir_path = base_data_path + year + "/" + subject + "/"
+
+for filename in os.listdir(data_dir_path):
+    data_path = os.path.join(data_dir_path, filename)
+    # checking if it is a file
+    if os.path.isfile(data_path):
+        print(data_path)
+
+        #data_path = "/grand/projects/SuperBERT/mansisak/bert-abstracts/2008/Biology/20220701_070950_00030_vrytk_d58b1dad-8368-42de-b191-b9a2da885938.txt"
+        bag, bag_size, abstracts = get_data(data_path)
+        sentence_a, sentence_b, label = process_abstracts(abstracts, bag, bag_size)
+        inputs = get_inputs(sentence_a, sentence_b, label)
+        dataset = AbstractsDataset(inputs)
+        loader = torch.utils.data.DataLoader(dataset, batch_size=2, shuffle=True)
 
 
-epochs = 1
-model = train_model(epochs, model, loader) 
+        epochs = 1
+        model = train_model(epochs, model, loader) 
+        #TODO (MS): save checkpointed model by subject and year!!
+        #same dir structure as bert abstracts 
 
 eval_model(model, loader)
