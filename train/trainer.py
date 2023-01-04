@@ -61,6 +61,9 @@ def eval_model(model, batch_size, base_data_path, year, subject):
 
             bag, bag_size, abstracts = get_data(data_path)
             sentence_a, sentence_b, label = process_abstracts(abstracts, bag, bag_size)
+            if(len(sentence_a) <= 0):
+                print("DATA LEN: ", len(sentence_a))
+                continue
             inputs = get_inputs(sentence_a, sentence_b, label)
             dataset = AbstractsDataset(inputs)
             loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
