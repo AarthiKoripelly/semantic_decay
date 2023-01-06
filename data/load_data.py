@@ -5,6 +5,10 @@ from tqdm import tqdm  # for our progress bar
 import os
 import sys
 
+#Need to seed everything to ensure reproducibility
+random.seed(42)
+
+#Get tokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 def get_data(data_path):
