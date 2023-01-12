@@ -111,3 +111,4 @@ def eval_model(model, batch_size, base_data_path, year, subject):
                     loop.set_postfix(accuracy=accuracy)
 
     print("accuracy: ", accuracy)
+    return accuracy

@@ -3,6 +3,7 @@ import argparse
 import torch
 import os
 import sys
+import pandas as pd
 
 from model.get_model import get_model
 from data.load_data import get_data, process_abstracts, get_inputs, AbstractsDataset
@@ -21,8 +22,15 @@ def main(args):
     base_data_path = args.base_data_path #"/grand/projects/SuperBERT/mansisak/bert-abstracts/"
     subject = args.subject
     checkpoints_path = args.checkpoints_path #'/grand/projects/SuperBERT/mansisak/semantic_decay_models/checkpoints/'
+    results_csv = args.results_csv
 
-    model = get_model(pretrained_model_path)
+    #If results csv exsists read it as pd dataframe
+    if(os.path.exists(results_csv)):
+        results = pd.read_csv(results_csv)
+    #Else, create new pd dataframe and save as csv 
+    else:
+        results = pd.DataFrame(index=range(1931, 2022),columns=range(1931,2022))
+        results.to_csv(results_csv)
 
 
 
@@ -32,12 +40,17 @@ def main(args):
         model_dir_path = checkpoints_path + year + "/" + subject + "/"
         model = get_model(model_dir_path)
 
-        next_year = start_year + 1
+        next_year = y + 1
         for ny in range(next_year, 2022):
-        print("next year: ", ny)
+            print("next year: ", ny)
 
-        next_y = str(ny)
-        eval_model(model, batch_size, base_data_path, next_y, subject)
+            next_y = str(ny)
+            #update results 
+            #eval_model(model, batch_size, base_data_path, next_y, subject)
+            results.loc[y, ny] = eval_model(model, batch_size, base_data_path, next_y, subject)
+            #save as csv 
+            results.to_csv(results_csv)
+
 
 
     '''
@@ -61,6 +74,7 @@ if __name__ == "__main__":
     parser.add_argument('--subject', type=str, default='Computer-Science')
     parser.add_argument('--base_data_path', type=str, default='/grand/projects/SuperBERT/mansisak/bert-abstracts/')
     parser.add_argument('--checkpoints_path', type=str, default='/grand/projects/SuperBERT/mansisak/semantic_decay_models/checkpoints/')
+    parser.add_argument('--results_csv', type=str, default='results.csv')
 
 args = parser.parse_args()
 
